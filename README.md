@@ -9,7 +9,7 @@
 2. Navigate to the Tkinter app directory & Run the Tkinter application:
 
 ```bash
-cd Lab4_HildaAwada_MaryFadlallah\tkinter_app
+cd Lab4_HildaAwada_MaryFadlallah\tk_data
 python main.py 
 
 ```
