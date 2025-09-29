@@ -6,15 +6,14 @@
 ## How to Run
 
 1. Open a terminal or command prompt.
-2. Navigate to the Tkinter app directory:
+2. Navigate to the Tkinter app directory & Run the Tkinter application:
 
 ```bash
 cd Lab4_HildaAwada_MaryFadlallah\tkinter_app
+python main.py 
 
-3. Run the Tkinter application:
+```
 
-```bash
-python main.py
 
 4. The Tkinter GUI window will open. Features include:
        Add, edit, delete students and instructors
