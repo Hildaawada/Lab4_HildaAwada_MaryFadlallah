@@ -1,0 +1,284 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Classes &mdash; School Management System (Tkinter) 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+
+  
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=8d563738"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            School Management System (Tkinter)
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../modules.html">lab2</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">School Management System (Tkinter)</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Module code</a></li>
+      <li class="breadcrumb-item active">Classes</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for Classes</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Classes module for the School Management System</span>
+<span class="sd">===============================================</span>
+
+<span class="sd">This module defines the core data models: ``Person``, ``Student``, ``Instructor``, and ``Courses``.</span>
+<span class="sd">It enforces validation rules (age, email format) and provides helper methods</span>
+<span class="sd">for course registration and instructor assignment.</span>
+
+<span class="sd">Author: Hilda Awada &amp; Mary Fadlallah</span>
+<span class="sd">Version: 1.0</span>
+<span class="sd">License: MIT</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span><span class="p">,</span> <span class="n">field</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+
+<span class="c1"># Regex for validating email format</span>
+<span class="n">_EMAIL_Check</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;^[^@\s]+@[^@\s]+\.[^@\s]+$&quot;</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="Person">
+<a class="viewcode-back" href="../Classes.html#Classes.Person">[docs]</a>
+<span class="nd">@dataclass</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Person</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Represents a base person with name, age, and email.</span>
+
+<span class="sd">    :param Fullname: Full name of the person</span>
+<span class="sd">    :type Fullname: str</span>
+<span class="sd">    :param Age: Age of the person (must be non-negative)</span>
+<span class="sd">    :type Age: int</span>
+<span class="sd">    :param _email: Email address (validated against regex)</span>
+<span class="sd">    :type _email: str</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">Fullname</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">Age</span><span class="p">:</span> <span class="nb">int</span>
+    <span class="n">_email</span><span class="p">:</span> <span class="nb">str</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">__post_init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Validate age and email format after initialization.&quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">Age</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Invalid Age Number&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">_EMAIL_Check</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_email</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The Email Format is Invalid&quot;</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">email</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get the email address.</span>
+
+<span class="sd">        :return: Email address</span>
+<span class="sd">        :rtype: str</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_email</span>
+
+    <span class="nd">@email</span><span class="o">.</span><span class="n">setter</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">email</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_email</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Set a new email after validating its format.</span>
+
+<span class="sd">        :param new_email: New email address</span>
+<span class="sd">        :type new_email: str</span>
+<span class="sd">        :raises ValueError: If email format is invalid</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">_EMAIL_Check</span><span class="o">.</span><span class="n">match</span><span class="p">(</span><span class="n">new_email</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The Email Format is Invalid&quot;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_email</span> <span class="o">=</span> <span class="n">new_email</span>
+
+<div class="viewcode-block" id="Person.introducing">
+<a class="viewcode-back" href="../Classes.html#Classes.Person.introducing">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">introducing</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return an introduction message.</span>
+
+<span class="sd">        :return: Introduction string</span>
+<span class="sd">        :rtype: str</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Hi, this is </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">Fullname</span><span class="si">}</span><span class="s2">, I&#39;m </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">Age</span><span class="si">}</span><span class="s2"> years old, you can reach out to my email: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_email</span><span class="si">}</span><span class="s2">&quot;</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="Courses">
+<a class="viewcode-back" href="../Classes.html#Classes.Courses">[docs]</a>
+<span class="nd">@dataclass</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Courses</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Represents a course in the system.</span>
+
+<span class="sd">    :param Course_ID: Unique identifier for the course</span>
+<span class="sd">    :type Course_ID: str</span>
+<span class="sd">    :param Course_Title: Name/title of the course</span>
+<span class="sd">    :type Course_Title: str</span>
+<span class="sd">    :param instructor_id: ID of the assigned instructor (optional)</span>
+<span class="sd">    :type instructor_id: str | None</span>
+<span class="sd">    :param Enrolled_StudentIDs: List of enrolled student IDs</span>
+<span class="sd">    :type Enrolled_StudentIDs: List[str]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">Course_ID</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">Course_Title</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">instructor_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">Enrolled_StudentIDs</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="nb">list</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Courses.add_new_student">
+<a class="viewcode-back" href="../Classes.html#Classes.Courses.add_new_student">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">add_new_student</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">student_ID</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Enroll a student in the course if not already enrolled.</span>
+
+<span class="sd">        :param student_ID: Unique ID of the student</span>
+<span class="sd">        :type student_ID: str</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">student_ID</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">Enrolled_StudentIDs</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">Enrolled_StudentIDs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">student_ID</span><span class="p">)</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="Student">
+<a class="viewcode-back" href="../Classes.html#Classes.Student">[docs]</a>
+<span class="nd">@dataclass</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Student</span><span class="p">(</span><span class="n">Person</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Represents a student, inheriting from Person.</span>
+
+<span class="sd">    :param student_ID: Unique identifier for the student</span>
+<span class="sd">    :type student_ID: str</span>
+<span class="sd">    :param registered_courses_ids: List of registered course IDs</span>
+<span class="sd">    :type registered_courses_ids: List[str]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">student_ID</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">registered_courses_ids</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="nb">list</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Student.register_course">
+<a class="viewcode-back" href="../Classes.html#Classes.Student.register_course">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">register_course</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">course</span><span class="p">:</span> <span class="n">Courses</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Register the student for a course and update both sides.</span>
+
+<span class="sd">        :param course: Course object</span>
+<span class="sd">        :type course: Courses</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">course</span><span class="o">.</span><span class="n">Course_ID</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">registered_courses_ids</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">registered_courses_ids</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">course</span><span class="o">.</span><span class="n">Course_ID</span><span class="p">)</span>
+            <span class="n">course</span><span class="o">.</span><span class="n">add_new_student</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">student_ID</span><span class="p">)</span></div>
+</div>
+
+
+
+<div class="viewcode-block" id="Instructor">
+<a class="viewcode-back" href="../Classes.html#Classes.Instructor">[docs]</a>
+<span class="nd">@dataclass</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Instructor</span><span class="p">(</span><span class="n">Person</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Represents an instructor, inheriting from Person.</span>
+
+<span class="sd">    :param instructor_id: Unique identifier for the instructor</span>
+<span class="sd">    :type instructor_id: str</span>
+<span class="sd">    :param assigned_courses_ids: List of assigned course IDs</span>
+<span class="sd">    :type assigned_courses_ids: List[str]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">instructor_id</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">assigned_courses_ids</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="n">field</span><span class="p">(</span><span class="n">default_factory</span><span class="o">=</span><span class="nb">list</span><span class="p">)</span>
+
+<div class="viewcode-block" id="Instructor.assign_course">
+<a class="viewcode-back" href="../Classes.html#Classes.Instructor.assign_course">[docs]</a>
+    <span class="k">def</span><span class="w"> </span><span class="nf">assign_course</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">course</span><span class="p">:</span> <span class="n">Courses</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Assign the instructor to a course and update both sides.</span>
+
+<span class="sd">        :param course: Course object</span>
+<span class="sd">        :type course: Courses</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">course</span><span class="o">.</span><span class="n">Course_ID</span> <span class="ow">not</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">assigned_courses_ids</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">assigned_courses_ids</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">course</span><span class="o">.</span><span class="n">Course_ID</span><span class="p">)</span>
+            <span class="n">course</span><span class="o">.</span><span class="n">instructor_id</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">instructor_id</span></div>
+</div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Hilda Awada &amp; Mary Fadlallah.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
