@@ -10,7 +10,7 @@
 
 ```bash
 cd Lab4_HildaAwada_MaryFadlallah\tk_data
-python main.py 
+py tk_data.py
 
 ```
 
