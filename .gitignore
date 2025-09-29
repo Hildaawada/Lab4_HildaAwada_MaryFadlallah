@@ -1,0 +1,29 @@
+# Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+.venv/
+env/
+venv/
+ENV/
+
+# PyCharm / VSCode settings
+.idea/
+.vscode/
+
+# SQLite database
+*.db
+
+# CSV or temporary files
+*.csv
+*.log
+
+# macOS system files
+.DS_Store
+
+# Build / output folders
+build/
+dist/
+*.egg-info/
