@@ -1,30 +1,17 @@
-# School Management System - Lab 4
+# School Management System - Tkinter
 
-**Authors:** Mary Fadlallah & Hilda Awada  
+**Author:** Mary Fadlallah
 ---
 
-## Project Overview
-This project implements a **School Management System** that allows you to manage **students, instructors, and courses**.  
-It provides **two GUI interfaces**:
-1. **Tkinter-based GUI** by Mary
-2. **PyQt5-based GUI** by Hilda
-
-Both interfaces allow you to:
-- Add, update, and delete students, instructors, and courses
-- Register students to courses
-- Assign instructors to courses
-- Search and filter records
-- Export/import CSV files
-- (Tkinter only) Backup the SQLite database
-
----
-
-## Requirements
-
-- Python 3.70 or higher
-- Tkinter (usually included with Python)
-- PyQt5 (`pip install pyqt5`)
-- SQLite3 (for Tkinter interface)
+## How to Run
+1. Open a terminal or command prompt.
+2. Navigate to the Tkinter app directory: cd Lab4_HildaAwada_MaryFadlallah\tkinter_app
+3. Run the Tkinter application: python main.py
+4. The Tkinter GUI window will open. Features include:
+       Add, edit, delete students and instructors
+       Register students to courses and assign instructors
+       Save/load data to CSV
+       Backup the SQLite database
 
 
 
